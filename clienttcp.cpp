@@ -23,7 +23,7 @@ ClientTCP::ClientTCP(QString _addressIp, int _port)
 
 void ClientTCP::connectToHost()
 {
-  clientSocket.connectToHost("10.98.32.154",8882);
+  clientSocket.connectToHost("10.98.32.146",8882);
 
 }
 
