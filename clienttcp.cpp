@@ -10,9 +10,9 @@ ClientTCP::ClientTCP(QObject *parent)
     connect(&tictoc,&QTimer::timeout,
             this,&ClientTCP::connectToHost);
     connect(&clientSocket,&QTcpSocket::connected,
-            this,&ClientTCP::arreterQTimer);
+            this,&ClientTCP::connexion);
     connect(&clientSocket,&QTcpSocket::disconnected,
-            this,&ClientTCP::activerQTimer);
+            this,&ClientTCP::deconnexion);
     connect(&clientSocket,&QTcpSocket::readyRead,
             this,&ClientTCP::getDatas);
 
@@ -50,13 +50,13 @@ void ClientTCP::getDatas()
     emit newDatas("recu");
 }
 
-void ClientTCP::arreterQTimer()
+void ClientTCP::connexion()
 {
     tictoc.stop();
 
 }
 
-void ClientTCP::activerQTimer()
+void ClientTCP::deconnexion()
 {
     tictoc.start();
 

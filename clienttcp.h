@@ -22,8 +22,9 @@ private:
 public slots:
     void sendDatas(QString message);
     void getDatas();
-    void arreterQTimer();
-    void activerQTimer();
+private slots:
+    void connexion();
+    void deconnexion();
 
 signals:
     void newDatas(QString);
