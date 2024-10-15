@@ -2,9 +2,11 @@
 #include <qdebug.h>
 
 
-ClientTCP::ClientTCP(QObject *parent)
-    : QObject{parent}
+ClientTCP::ClientTCP(QString _addressIp, int _port)
+
 {
+    addressIp=_addressIp;
+    port=_port;
     dataIn.setDevice(&clientSocket);
     tictoc.setInterval(100);
     connect(&tictoc,&QTimer::timeout,
@@ -15,18 +17,16 @@ ClientTCP::ClientTCP(QObject *parent)
             this,&ClientTCP::deconnexion);
     connect(&clientSocket,&QTcpSocket::readyRead,
             this,&ClientTCP::getDatas);
-
-
     tictoc.start();
-
 
 }
 
 void ClientTCP::connectToHost()
 {
-    clientSocket.connectToHost("10.98.32.144",8882);
-     qDebug() << "le client est connecté";
+  clientSocket.connectToHost("10.98.32.154",8882);
+    qDebug()<<" je suis connecté";
 }
+
 
 void ClientTCP::sendDatas(QString message)
 {
@@ -47,7 +47,7 @@ void ClientTCP::getDatas()
     if (!dataIn.commitTransaction()) return;
     QString message;
     dataIn >> message;
-    emit newDatas("recu");
+    emit newDatas(message);
 }
 
 void ClientTCP::connexion()
