@@ -21,10 +21,10 @@ void Controleur::newDatas()
     double erreur = (distance_cible/600) - (distance_actuelle/600);
     somme_erreurs += erreur;
     double variation_erreur = erreur - erreur_precedente;
-    double commande_a = kp * erreur + ki * somme_erreurs + kd * variation_erreur;
+    double angle = kp * erreur + ki * somme_erreurs + kd * variation_erreur;
     erreur_precedente = erreur;
-    if (commande_a > 1) commande_a = 1;
-    if (commande_a < -1) commande_a -1;
+    if (angle > 1) angle = 1;
+    if (angle < -1) angle -1;
 
     // correction de la vitesse :
     if (distance_actuelle <= distance_cible) {
@@ -36,8 +36,8 @@ void Controleur::newDatas()
     if (vitesse < -vitesse_max) vitesse = -vitesse_max;
 
     // emition du signal + affichage des valeurs
-    emit deplacer(vitesse, commande_a);
-    qDebug() << "Correction:" << commande_a;
+    emit deplacer(vitesse, angle);
+    qDebug() << "Correction:" << angle;
     qDebug() << "vitesse:" << vitesse;
 
 

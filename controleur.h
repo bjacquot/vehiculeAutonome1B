@@ -24,7 +24,7 @@ public:
     array<int, 360>& distances_mm;
 
 signals:
-    void deplacer(double vitesse, double commande_a);
+    void deplacer(double vitesse, double angle);
 
 public slots:
     void newDatas();
