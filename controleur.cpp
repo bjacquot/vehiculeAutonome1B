@@ -4,11 +4,13 @@
 Controleur::Controleur(QObject *parent, array<int, 360>& distances)
     : QObject(parent), distances_mm(distances), erreur_precedente(0), somme_erreurs(0)
 {
-
+    isRunning == false;
 }
 
 void Controleur::newDatas()
 {
+ if (isRunning == true)
+ {
     // Initialisation:
     double vitesse_max = 1;
     double vitesse = 0.1;
@@ -24,12 +26,15 @@ void Controleur::newDatas()
     double angle = kp * erreur + ki * somme_erreurs + kd * variation_erreur;
     erreur_precedente = erreur;
     if (angle > 1) angle = 1;
-    if (angle < -1) angle -1;
+    if (angle < -1) angle = -1;
 
     // correction de la vitesse :
-    if (distance_actuelle <= distance_cible) {
+    if (distance_actuelle <= distance_cible)
+    {
         vitesse = vitesse_max * ((distance_actuelle) / distance_cible)+0.05;
-    } else {
+    }
+    else
+    {
         vitesse = 0.1;
     }
     if (vitesse > vitesse_max) vitesse = vitesse_max;
@@ -39,8 +44,23 @@ void Controleur::newDatas()
     emit deplacer(vitesse, angle);
     qDebug() << "Correction:" << angle;
     qDebug() << "vitesse:" << vitesse;
+  }
+ else
+ {
+    emit deplacer(0, 0);
+    qDebug() << " la voiture est arréter "  ;
+ }
 
+}
 
+void Controleur::on()
+{
+    isRunning=true;
+}
+
+void Controleur::off()
+{
+    isRunning=false;
 }
 
 void Controleur::initPID(double _kp, double _ki, double _kd)
@@ -49,3 +69,5 @@ void Controleur::initPID(double _kp, double _ki, double _kd)
     ki = _ki;
     kd = _kd;
 }
+
+
