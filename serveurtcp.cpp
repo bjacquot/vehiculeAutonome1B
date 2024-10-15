@@ -6,9 +6,9 @@
 
 
 
-ServeurTcp::ServeurTcp(QString _ip,int _port) {
+ServeurTcp::ServeurTcp(int _port) {
 
-    ip=_ip;
+
     port=_port;
 
 
@@ -17,7 +17,7 @@ ServeurTcp::ServeurTcp(QString _ip,int _port) {
              this,&ServeurTcp::newConnexion);
 
 
-    bool resEcoute = monServeur.listen(QHostAddress(_ip),_port);
+    bool resEcoute = monServeur.listen((QHostAddress::AnyIPv4),_port);
     if( resEcoute == true)
     {
         qDebug()<<"ecoute réussie";
