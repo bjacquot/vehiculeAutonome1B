@@ -16,7 +16,7 @@ ClientTCP::ClientTCP(QString _addressIp, int _port)
     connect(&clientSocket,&QTcpSocket::disconnected,
             this,&ClientTCP::deconnexion);
     connect(&clientSocket,&QTcpSocket::readyRead,
-            this,&ClientTCP::getDatas);
+             this,&ClientTCP::getDatas);
     tictoc.start();
 
 }
@@ -24,20 +24,17 @@ ClientTCP::ClientTCP(QString _addressIp, int _port)
 void ClientTCP::connectToHost()
 {
   clientSocket.connectToHost("10.98.32.154",8882);
-    qDebug()<<" je suis connecté";
+
 }
 
 
 void ClientTCP::sendDatas(QString message)
 {
-
-    /*qDebug()<<"je suis dans sendDatas:";
-    message = "salut";
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_0);
     out << message;
-    pclientSocket->write(block);*/
+    clientSocket.write(block);
     qDebug()<<"message envoyé :"<<message;
 }
 
