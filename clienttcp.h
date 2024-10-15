@@ -10,7 +10,7 @@ class ClientTCP : public QObject
 {
     Q_OBJECT
 public:
-    explicit ClientTCP(QString _addressIp, int _port );
+    explicit ClientTCP(QString _addressIp, int _port);
 private:
     QTcpSocket clientSocket;
     QDataStream dataIn ;
