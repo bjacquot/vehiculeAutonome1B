@@ -56,7 +56,7 @@ void ServeurTcp::getDatas()
 
 void ServeurTcp::sendDatas(QString message)
 {
-    if(serveurSocket=!nullptr)
+    if(serveurSocket!=nullptr)
     {
         QByteArray block;
         QDataStream out(&block, QIODevice::WriteOnly);
