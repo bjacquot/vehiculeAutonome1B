@@ -10,7 +10,7 @@ class MaterielSimule : public Materiel
 {
 public:
     MaterielSimule();
-    ClientTCP tcp;
+    ClientTCP tcp{"10.98.32.154",8884};
 
 public slots:
     void processTcpDatas(QString data);
