@@ -2,7 +2,7 @@
 #include <qdebug.h>
 
 
-ClientTCP::ClientTCP(QString _addressIp, int _port )
+ClientTCP::ClientTCP(QString _addressIp, int _port)
 
 {
     addressIp=_addressIp;
