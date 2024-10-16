@@ -11,18 +11,17 @@ class Controleur : public QObject
     Q_OBJECT
 
 public:
-    explicit Controleur(QObject *parent, array<int, 360>& distances);
+    Controleur(array<int,360>&_distances_mm);
     // coefficients:
-    bool isRunning;
+    bool isRunning=false;
     double kp;
     double ki;
     double kd;
-    void initPID(double _kp, double _ki, double _kd);
+    void initPID(double _kp);
     // erreurs:
     double erreur_precedente;
     double somme_erreurs;
-    // tableau de valeur
-    array<int, 360>& distances_mm;
+    array<int,360>&distances_mm;
 
 
 signals:
