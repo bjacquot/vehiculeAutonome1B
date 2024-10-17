@@ -9,10 +9,9 @@ class WidgetLIDAR : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WidgetLIDAR(QWidget *parent = nullptr);
+    array<int,360>&distances_mm;
+    WidgetLIDAR(QWidget *parent,array<int, 360>&distances);
     void paintEvent(QPaintEvent *event);
-    array<int,360>distances;
-signals:
 
 };
 
